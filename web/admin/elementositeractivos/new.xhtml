@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+   <ui:composition template="/template.xhtml">
+       <ui:define name="content">
+         <h:form id="form">
+               <h:panelGrid id="panel">
+                   <h2><legend>#{bundle.agregarinteractivo}</legend></h2>
+               <br></br>
+              <p:selectOneRadio value="#{backingInteractivos.isCompuesto}"> 
+                   
+                   <f:selectItem itemValue="false" itemLabel="#{bundle.seleccionable}"/>
+                   <f:selectItem itemValue="true" itemLabel="#{bundle.elementocompuesto}"/>
+                   <f:ajax listener="#{backingInteractivos.establecerTipoElemento()}" rendered="form"/>
+                </p:selectOneRadio>
+
+               <p:selectOneRadio value="#{backingInteractivos.isPrimerNivel}"> 
+                    
+                   <f:selectItem itemValue="true" itemLabel="#{bundle.elementotematica}"/>
+                   <f:selectItem itemValue="false" itemLabel="#{bundle.elementocompuesto}"/>
+                   <f:ajax listener="#{backingInteractivos.establecerTipoElemento()}" rendered="form"/>
+               </p:selectOneRadio>
+               <br></br>  
+               <br></br> 
+               <p:outputLabel for="elem" value="#{bundle.elementosuperior}"/>
+               <p:selectOneMenu id="elem" value="#{backingInteractivos.elementosuperior}">
+                   <f:selectItem noSelectionOption="true" itemLabel="Ninguna"/>
+                   <f:selectItems value="#{backingInteractivos.elementosCompuestos}" var="compuesto" itemLabel="#{compuesto.nombre}" itemValue="#{compuesto}"/>
+               </p:selectOneMenu>
+               <br></br>  
+               <br></br>  
+               <p:outputLabel for="tem" value="#{bundle.tematica}      "/>
+               <p:selectOneMenu id="tem" value="#{backingInteractivos.tematica}">
+                   <f:selectItem noSelectionOption="true" itemLabel="Ninguna"/>
+                   <f:selectItems value="#{backingInteractivos.tematicas}" var="tematica" itemLabel="#{tematica.nombre}" itemValue="#{tematica}"/>
+               </p:selectOneMenu>
+               <br></br>  
+               <br></br>  
+               <p:outputLabel for="name" value="#{bundle.nombreelemento}"/>
+               <p:inputText id="name" value="#{backingInteractivos.nombre}"/>
+               <br></br>   
+               <br></br>   
+                <p:commandButton value="Seleccionar imagen para elemento" onclick="PF('dialogoImagen').show()"/>
+               
+            <br></br>
+              <br></br>
+               <br></br>
+               <h:commandButton value="#{bundle.agregar}" action="#{backingInteractivos.agregar()}"/>
+               <br></br>
+               <br></br>
+               <h:commandLink value="#{bundle.verelementos}"  action="/admin/elementositeractivos/index.xhtml"/>
+           </h:panelGrid>
+           </h:form>
+           <p:dialog header="Cargar " widgetVar="dialogoImagen" modal="true">
+                   <h:form id="cargarImagen" enctype="multipart/form-data">
+                       <p:fileUpload id="txtAvatar" mode="simple" value="#{backingInteractivos.file}"/>
+                       <br></br>
+                       <p:commandButton value="Cargar Imagen" ajax="false" actionListener="#{backingInteractivos.upload()}"/>
+                   </h:form>
+               </p:dialog>
+           
+       </ui:define>
+   </ui:composition>
+    
+</html>

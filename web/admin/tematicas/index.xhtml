@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ <ui:composition template="/template.xhtml">
+       <ui:define name="content">
+         
+        <h:form>
+              <div style="text-align: center; font-size: 40px; font-weight: bold">#{bundle.listatematicas}</div>
+              <br></br>
+            <p:dataTable value="#{backingTematicas.tematicas}" var="tematica">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="#{bundle.tematica}"/>
+                </f:facet>
+                <h:outputText value="#{tematica.nombre}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="#{bundle.eliminar}" style="text-align: center"/>
+                </f:facet>
+                <h:commandLink action="#{backingTematicas.borrarTematica(tematica.id)}" style="text-align: center" value="#{bundle.eliminar}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="#{bundle.cambiarestado}"/>
+                </f:facet>
+                <h:outputText value="#{tematica.activa}"/>
+                 -
+                <h:commandLink action="#{backingTematicas.activar(tematica.id)}" value="#{bundle.cambiar}"/>
+            </p:column>
+          </p:dataTable>
+              <h:messages style="font-weight: bold; color: #ff0000"/>
+              <br></br>
+              <br></br>
+              <h:commandLink value="#{bundle.creartematica}" action="/admin/tematicas/new.xhtml"/>
+              <br/>
+              <br/>
+              <h:commandLink value="#{bundle.volver}" action="/welcome.xhtml"/>
+        </h:form>
+       </ui:define>
+ </ui:composition>
+  
+</html>

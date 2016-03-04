@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title><h:outputText value="#{bundle.title}"/></title>
+        <h:outputStylesheet name="css.css" library="css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap2.css"/>
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/imagenes/comunicador.png" type="image/x-icon" />
+
+    </h:head>
+    <h:body>
+        <h:form> 
+            <ul>
+                <p:button outcome="/admin/tematicas/index.xhtml" value="Ir a tematicas" icon="ui-icon-star" rendered="#{backingUsuario.username!=null}"/>
+                <p:button outcome="/admin/elementositeractivos/index.xhtml" value="Ir a elementos" icon="ui-icon-star" rendered="#{backingUsuario.username!=null}"/>
+                <div class="username">
+                    <h:outputText value="#{bundle.welcome}, #{backingUsuario.username}" rendered="#{backingUsuario.username!=null}"/>
+                    <h:commandButton class="submit btn-small btn-primary" id="logout" value="#{bundle.logout}" action="#{backingUsuario.logout}" rendered="#{backingUsuario.username!=null}"/>
+                </div>
+                <p:separator/>
+
+            </ul>
+        </h:form>
+        <ui:insert name="content">
+
+        </ui:insert>
+    </h:body>
+
+</html>

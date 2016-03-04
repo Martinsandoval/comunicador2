@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+        <locale-config>
+            <default-locale>es</default-locale>
+            <!--         <supported-locale>en</supported-locale>-->
+        </locale-config>
+        <resource-bundle>
+            <base-name>bundle.bundle</base-name>
+            <var>bundle</var>
+            <!--        <base-name>Bundle.bundle-eng</base-name>-->
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
+    <managed-bean>
+        <managed-bean-name>backingInteractivos</managed-bean-name>
+        <managed-bean-class>ar.edu.unnoba.admin.backing.BackingInteractivos</managed-bean-class>
+    
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+ 
+            
+        <lifecycle>
+        <phase-listener>ar.edu.unnoba.admin.backing.MyPhaseListener</phase-listener>
+    </lifecycle>
+    
+    <navigation-rule>
+        <from-view-id>/admin/tematicas/new.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/tematicas/index.xhtml</to-view-id>
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/tematicas/new.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/admin/tematicas/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/tematicas/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/tematicas/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/admin/elementositeractivos/new.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/elementositeractivos/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/elementositeractivos/new.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/admin/elementositeractivos/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/admin/elementositeractivos/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/admin/elementositeractivos/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/welcome.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>case1</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>case1</from-outcome>
+            <to-view-id>/interactivos/show.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/interactivos/show.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>case1</from-outcome>
+            <to-view-id>/interactivos/show.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

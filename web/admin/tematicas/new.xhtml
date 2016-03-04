@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template.xhtml">
+        <ui:define name="content">
+            <h:form id="form" enctype="multipart/form-data">
+                <h:outputLabel style="font-weight: bold; font-size: 16px" value="#{bundle.agregartematica}"/>
+                <br></br>
+                <br></br>
+                <p:outputLabel for="tematica" value="#{bundle.nombretematica}"/>
+                <p:inputText id="tematica" value="#{backingTematicas.tematica.nombre}" required="true"/>
+               
+
+                <br></br>
+                <br></br>
+                <p:commandButton value="Seleccionar imagen para tematica" onclick="PF('dialogoImagen').show()"/>
+                <br></br>
+                <br></br>
+                <p:commandButton ajax="false" value="#{bundle.agregar}" action="#{backingTematicas.agregar()}"/>
+                <h:messages style="font-size: 14px; font-weight: bold; color: #ff0000"/>
+                <br></br>
+                <br></br>
+             </h:form>
+            <h:form id="form2">
+              <h:commandLink value="#{bundle.vertematicas}" action="/admin/tematicas/index.xhtml"/>
+            </h:form>
+            <p:dialog header="Cargar " widgetVar="dialogoImagen" modal="true">
+                    <h:form id="cargarImagen" enctype="multipart/form-data">
+                        <p:fileUpload id="txtAvatar" mode="simple" value="#{backingTematicas.file}"/>
+                        <br></br>
+                        <p:commandButton value="Cargar Imagen" ajax="false" actionListener="#{backingTematicas.upload()}"/>
+                    </h:form>
+                </p:dialog>
+        </ui:define>
+
+    </ui:composition>
+
+
+</html>

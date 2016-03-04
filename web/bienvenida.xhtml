@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title><h:outputText value="#{bundle.title}"/></title>
+        <h:outputStylesheet name="css.css" library="css"/>
+        <!--        <h:outputStylesheet name="bootstrap.css" library="css"/>-->
+        <link rel="stylesheet" type="text/css" href="resources/css/bootstrap2.css"/>
+    </h:head>
+    <h:body>
+        <h:commandButton class="btn btn-primary glyphicon-user" style="margin-left: 1250px; margin-top: 20px;" value="Iniciar Sesion" onclick="PF('login').show()"/>
+        <p:dialog header="#{bundle.login}"  widgetVar="login" modal="true" style="background-color: #d3d3d3; height: 200px">
+            <h:form id="form">
+
+                <br></br> 
+                <br> <h:outputLabel for="usuario" style="font-weight:bold;" value="#{bundle.user}"/> </br>
+                <br><h:inputText id="usuario" required="true" value="#{backingUsuario.username}"/></br>
+
+                <br><h:outputLabel for="password" style="font-weight:bold" value="#{bundle.password}"/></br> 
+                <br><h:inputSecret id="password"  required="true" value="#{backingUsuario.password}"/></br>
+                <br></br>
+                <br/>
+                <h:commandButton class="btn btn-primary btn-block" style="text-align: center" id="ingresar" value="#{bundle.ingresar}" action="#{backingUsuario.login()}"/>
+                <br/>
+                <br/>
+                <h:messages/>  
+            </h:form>
+        </p:dialog>
+        
+        <div class="container">
+            <div class="row">
+                <div class="span6">
+                    <div class="lead">
+                        <img class="img-circle" src="resources/imagenes/comunicador.png">
+
+                        </img>  
+                    </div> 
+                </div> 
+                <div class="span6">
+                    <br></br>
+                    <h1 class="text-center" style="text-shadow: 1px 1px 1px #060606">Comunicador App</h1>
+                    <br></br>
+                    <div style="color: black; font-size: 20px; line-height: 1.5">
+                    Esta aplicación sirve para ayudar a
+                    aquellas personas que tengan dificultades 
+                    motoras mediante la interaccion de imagenes
+                    que representan tareas de la vida cotidiana
+                    de cualquier persona.
+                    Para iniciar la aplicacion haga click en
+                    el botón "Iniciar Comunicador".
+                    Si desea administrar el comunicador debe iniciar sesión.
+                    </div>
+                    <br></br>
+                    <br></br>
+                    <h:link class="btn-large btn btn-primary btn-block" value="Iniciar Comunicador" outcome="index.xhtml"/>
+                    
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template2.xhtml">
+        <ui:define name="content">
+           
+             <h2>Seleccione una elemento interactivo</h2>
+            <div id="container">
+                <p:dataGrid  value="#{tematicaFrontBacking.tematica.elementos}" var="elemento" columns="4">
+                    <h:form enctype="multipart/form-data">
+                        <div class="img">
+                            <h:commandButton action="#{elementoInteractivoFrontBacking.seleccionarElemento(elemento.id)}" class="no-selected" image="interactivo_imagen/#{elemento.img_path}">
+                               <h:outputLabel style="margin-left: 50px; font-size: 16px; font-weight: bold" value="#{elemento.nombre}"/>
+                             </h:commandButton>
+                        </div> 
+                    </h:form>
+                </p:dataGrid>
+            </div>
+             
+            <div class="container"> 
+                <p:dataGrid value="#{seleccionElementosBacking.elementoSeleccionados}" var="elem">
+                    <h:form enctype="multipart/form-data" id="form">
+                        <h:graphicImage class="" value="interactivo_imagen/#{elem.img_path}"/>
+                       
+                    </h:form>
+                </p:dataGrid>
+                <h:commandButton value="Volver" action="#{elementoInteractivoFrontBacking.volver(elemento.id)}"/>
+                <h:commandButton value="Limpiar" action="#{elementoInteractivoFrontBacking.seleccionElementosBacking.limpiarSeleccion()}"/>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+</html>
